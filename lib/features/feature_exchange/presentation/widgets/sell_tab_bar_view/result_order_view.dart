@@ -1,5 +1,7 @@
+import 'package:crypto_nas/core/blocs/user_profile_bloc/user_profile_bloc.dart';
 import 'package:crypto_nas/features/feature_exchange/presentation/utils/curve_painter.dart';
 import 'package:crypto_nas/features/feature_exchange/presentation/utils/exchange_order_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
@@ -87,13 +89,17 @@ Dialog resultOrderDialogSell(BuildContext context) {
           fontSize: 14,
         ),
       ),
-      content: Text(
-        "Vahid Ghasemi",
-        style: TextStyle(
-          color: Colors.grey.shade700,
-          fontWeight: FontWeight.bold,
-          fontSize: 14,
-        ),
+      content: BlocBuilder<UserProfileBloc, UserProfileState>(
+        builder: (context, userProfileState) {
+          return Text(
+            userProfileState.userProfile.last,
+            style: TextStyle(
+              color: Colors.grey.shade700,
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+          );
+        },
       ),
     ),
     ExchangeOrderModel(

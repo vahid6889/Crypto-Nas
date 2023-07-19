@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:blobs/blobs.dart';
+import 'package:crypto_nas/features/feature_exchange/presentation/utils/curve_painter.dart';
 import 'package:crypto_nas/features/feature_exchange/presentation/widgets/buy_tab_bar_view/result_order_view.dart';
 import 'package:crypto_nas/features/feature_exchange/presentation/widgets/buy_tab_bar_view/one_step_view.dart';
 import 'package:crypto_nas/features/feature_exchange/presentation/widgets/buy_tab_bar_view/two_step_view.dart';
@@ -122,7 +123,6 @@ class _BuyTabBarViewState extends State<BuyTabBarView> {
             themeData: themeData,
             dropdownValue: dropdownValue,
             height: height,
-            width: width,
             child: i == 0 ? const OneStepView() : const TwoStepView(),
           ),
         ],
@@ -133,6 +133,59 @@ class _BuyTabBarViewState extends State<BuyTabBarView> {
           dropdownValue: dropdownValue,
           height: height,
           width: width,
+          child: Container(
+            decoration: BoxDecoration(
+              color: themeData.cardColor,
+              borderRadius: BorderRadius.circular(20.0),
+            ),
+            constraints: const BoxConstraints(maxHeight: 150),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Vahid Ghasemi',
+                        style: TextStyle(
+                          color: Colors.white70,
+                        ),
+                      ),
+                      Icon(
+                        Icons.wallet,
+                        color: Colors.white70,
+                      ),
+                    ],
+                  ),
+                  const Text(
+                    'bank id: 113535151321',
+                    style: TextStyle(
+                      color: Colors.white70,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.01),
+                  CustomPaint(
+                    size: const Size(200, 3),
+                    painter: CurvePainter(color: themeData.primaryColorLight),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: height * 0.01),
+                        const Text(
+                          'sheba: 100020034435456675642',
+                          style: TextStyle(
+                            color: Colors.white70,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ],
     );
@@ -150,14 +203,17 @@ class _BuyTabBarViewState extends State<BuyTabBarView> {
   }) {
     return Step(
       title: title,
-      subtitle: Text('Subtitle'),
+      subtitle: const Text(
+        'Pleas enter the transaction',
+        style: TextStyle(fontSize: 14),
+      ),
       state: state,
       isActive: isActive,
       content: LimitedBox(
         maxWidth: 300,
         maxHeight: 300,
         child: SizedBox(
-          width: 220,
+          width: width ?? 220,
           child: child,
         ),
       ),

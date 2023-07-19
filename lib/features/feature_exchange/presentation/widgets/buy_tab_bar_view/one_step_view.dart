@@ -25,24 +25,19 @@ class OneStepView extends StatelessWidget {
             child: DropdownButton(
               itemHeight: 60,
               dropdownColor: themeData.splashColor,
+              focusColor: themeData.scaffoldBackgroundColor,
               items: ['BTC']
                   .map(
                     (value) => DropdownMenuItem(
                       value: value,
                       child: Text(
-                        value == 'English'
-                            ? '\u{1F1FA}\u{1F1F2} $value'
-                            : '\u{1F1EE}\u{1F1F7} $value',
+                        value == 'English' ? value : value,
                         style: themeData.textTheme.bodySmall,
                       ),
                     ),
                   )
                   .toList(),
-              onChanged: (String? value) {
-                //   setState(() {
-                //     dropdownValue = value!;
-                //   });
-              },
+              onChanged: (String? value) {},
               isExpanded: true,
               value: 'BTC',
             ),

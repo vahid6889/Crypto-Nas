@@ -66,10 +66,10 @@ class _ExchangePageState extends State<ExchangePage>
                       controller: _tabController,
                       tabs: [
                         Tab(
-                          text: AppLocalizations.of(context).buy,
+                          text: AppLocalizations.of(context).sell,
                         ),
                         Tab(
-                          text: AppLocalizations.of(context).sell,
+                          text: AppLocalizations.of(context).buy,
                         ),
                       ],
                       labelColor: themeData.secondaryHeaderColor,
