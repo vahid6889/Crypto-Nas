@@ -10,29 +10,35 @@ class WatchListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Flexible(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              RotatedBox(
-                quarterTurns: 3,
-                child: BlocBuilder<ThemeBloc, ThemeData>(
-                  builder: (context, themeData) {
-                    return Lottie.asset(
-                      themeData == MyThemes.darkTheme
-                          ? 'assets/bitcointouch-dark.json'
-                          : 'assets/bitcointouch.json',
-                      fit: BoxFit.fill,
-                    );
-                  },
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 0,
+      ),
+      body: Column(
+        children: [
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                RotatedBox(
+                  quarterTurns: 3,
+                  child: BlocBuilder<ThemeBloc, ThemeData>(
+                    builder: (context, themeData) {
+                      return Lottie.asset(
+                        themeData == MyThemes.darkTheme
+                            ? 'assets/bitcointouch-dark.json'
+                            : 'assets/bitcointouch.json',
+                        fit: BoxFit.fill,
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

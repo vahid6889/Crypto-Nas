@@ -42,9 +42,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             onPressed: () {
               BlocProvider.of<LanguageBloc>(context).add(
                 ChangeLanguage(
-                    selectedLanguage: languageCode == 'en'
-                        ? Language.farsi
-                        : Language.english),
+                  selectedLanguage:
+                      languageCode == 'en' ? Language.farsi : Language.english,
+                ),
               );
             },
             icon: BlocBuilder<LanguageBloc, LanguageState>(

@@ -122,7 +122,7 @@ class _BuyTabBarViewState extends State<BuyTabBarView> {
             state: i == currentStep ? StepState.editing : StepState.indexed,
             themeData: themeData,
             dropdownValue: dropdownValue,
-            height: height,
+            height: height * 0.25,
             child: i == 0 ? const OneStepView() : const TwoStepView(),
           ),
         ],
@@ -131,11 +131,11 @@ class _BuyTabBarViewState extends State<BuyTabBarView> {
           state: currentStep == 2 ? StepState.complete : StepState.indexed,
           themeData: themeData,
           dropdownValue: dropdownValue,
-          height: height,
           width: width,
           child: Container(
+            height: height * 0.20,
             decoration: BoxDecoration(
-              color: themeData.cardColor,
+              color: themeData.hintColor,
               borderRadius: BorderRadius.circular(20.0),
             ),
             constraints: const BoxConstraints(maxHeight: 150),
@@ -214,6 +214,7 @@ class _BuyTabBarViewState extends State<BuyTabBarView> {
         maxHeight: 300,
         child: SizedBox(
           width: width ?? 220,
+          height: height,
           child: child,
         ),
       ),

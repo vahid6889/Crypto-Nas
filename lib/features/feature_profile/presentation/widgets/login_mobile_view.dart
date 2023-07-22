@@ -37,42 +37,35 @@ class LoginMobileView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    // var width = MediaQuery.of(context).size.width;
     var themeData = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // const SizedBox(height: 30,),
-        Lottie.asset(
-          'assets/waveloop.json',
-          height: height * 0.2,
-          width: double.infinity,
-          fit: BoxFit.fill,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: Text(
-            AppLocalizations.of(context).login,
-            style: themeData.textTheme.headlineLarge,
+        Expanded(
+          child: Lottie.asset(
+            'assets/waveloop.json',
+            width: double.infinity,
+            fit: BoxFit.fill,
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-          child: Text(
-            AppLocalizations.of(context).loginAccount,
-            style: themeData.textTheme.bodySmall,
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  AppLocalizations.of(context).login,
+                  style: themeData.textTheme.headlineLarge,
+                ),
+                Text(
+                  AppLocalizations.of(context).loginAccount,
+                  style: themeData.textTheme.headlineSmall,
+                ),
+              ],
+            ),
           ),
         ),
-        SizedBox(
-          height: height * 0.03,
-        ),
-
         Padding(
           padding: const EdgeInsets.only(left: 20.0, right: 20),
           child: Form(
@@ -259,62 +252,67 @@ class LoginMobileView extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Text(
-              AppLocalizations.of(context).doYouNeedToRegister,
-              style: themeData.textTheme.displaySmall,
-            ),
-          ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 20.0, right: 20),
-          child: SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: OutlinedButton(
-              style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Colors.blue, width: 2),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  PageRouteBuilder(
-                    transitionDuration: const Duration(milliseconds: 250),
-                    reverseTransitionDuration:
-                        const Duration(milliseconds: 250),
-                    pageBuilder: (context, animation, secondaryAnimation) =>
-                        const SignUpScreen(),
-                    transitionsBuilder:
-                        (context, animation, secondaryAnimation, child) {
-                      animation = CurvedAnimation(
-                          parent: animation, curve: Curves.linear);
-                      return SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0, 1),
-                          end: Offset.zero,
-                        ).animate(animation),
-                        child: child,
-                      );
-                    },
-                  ),
-                );
-              },
-              child: Text(
-                AppLocalizations.of(context).signUp,
-              ),
-            ),
-          ),
+          child: Container(),
         ),
         SizedBox(
-          height: height * 0.03,
-        )
+          height: height * 0.05,
+        ),
+        Center(
+          child: Text(
+            AppLocalizations.of(context).doYouNeedToRegister,
+            style: themeData.textTheme.displaySmall,
+          ),
+        ),
+        Stack(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 20.0, right: 20, bottom: 5),
+              child: Align(
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 55,
+                  child: FloatingActionButton.extended(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: const Duration(milliseconds: 250),
+                          reverseTransitionDuration:
+                              const Duration(milliseconds: 250),
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) =>
+                                  const SignUpScreen(),
+                          transitionsBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            animation = CurvedAnimation(
+                                parent: animation, curve: Curves.linear);
+                            return SlideTransition(
+                              position: Tween<Offset>(
+                                begin: const Offset(0, 1),
+                                end: Offset.zero,
+                              ).animate(animation),
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    backgroundColor: themeData.scaffoldBackgroundColor,
+                    label: Text(
+                      AppLocalizations.of(context).signUp,
+                      style: const TextStyle(color: Colors.blue),
+                    ),
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(color: Colors.blue, width: 2),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
       ],
     );
   }

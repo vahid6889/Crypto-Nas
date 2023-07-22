@@ -6,6 +6,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 Dialog resultOrderDialogBuy(BuildContext context) {
+  var height = MediaQuery.of(context).size.height;
+  var width = MediaQuery.of(context).size.width;
   var themeData = Theme.of(context);
   final List<ExchangeOrderModel> orderTile = [
     ExchangeOrderModel(
@@ -130,7 +132,7 @@ Dialog resultOrderDialogBuy(BuildContext context) {
         color: themeData.dialogBackgroundColor,
         borderRadius: BorderRadius.circular(20.0),
       ),
-      constraints: const BoxConstraints(maxHeight: 350),
+      constraints: BoxConstraints(maxHeight: height * 0.50),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -157,7 +159,7 @@ Dialog resultOrderDialogBuy(BuildContext context) {
               children: [
                 MaterialButton(
                   height: 40,
-                  minWidth: 330,
+                  minWidth: width * 0.70,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18)),
                   onPressed: () {},

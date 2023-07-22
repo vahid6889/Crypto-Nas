@@ -44,7 +44,7 @@ class MyThemes {
     splashColor: const Color.fromARGB(255, 47, 47, 52),
     focusColor: Colors.white54,
     canvasColor: Colors.white54,
-    cardColor: const Color(0xFF4B4B4C),
+    hintColor: const Color(0xFF4B4B4C),
     fontFamily: "Vazir",
     // colorScheme:
     //     const ColorScheme.light(onSecondary: Color.fromARGB(255, 47, 47, 52)),
@@ -100,7 +100,7 @@ class MyThemes {
     splashColor: Colors.white,
     focusColor: Colors.black54,
     canvasColor: Colors.black54,
-    cardColor: const Color(0xFF011C4B),
+    hintColor: const Color(0xFF011C4B),
     fontFamily: "Vazir",
   );
 }

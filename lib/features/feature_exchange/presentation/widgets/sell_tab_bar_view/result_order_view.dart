@@ -6,6 +6,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 Dialog resultOrderDialogSell(BuildContext context) {
+  var height = MediaQuery.of(context).size.height;
+  var width = MediaQuery.of(context).size.width;
   var themeData = Theme.of(context);
   final List<ExchangeOrderModel> orderTile = [
     ExchangeOrderModel(
@@ -130,7 +132,7 @@ Dialog resultOrderDialogSell(BuildContext context) {
         color: themeData.dialogBackgroundColor,
         borderRadius: BorderRadius.circular(20.0),
       ),
-      constraints: const BoxConstraints(maxHeight: 350),
+      constraints: BoxConstraints(maxHeight: height * 0.50),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -152,26 +154,28 @@ Dialog resultOrderDialogSell(BuildContext context) {
                 );
               },
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MaterialButton(
-                  height: 40,
-                  minWidth: 330,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18)),
-                  onPressed: () {},
-                  color: const Color(0xFF16B180),
-                  child: Text(
-                    AppLocalizations.of(context).sendOrder,
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: themeData.dialogBackgroundColor,
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MaterialButton(
+                    height: 40,
+                    minWidth: width * 0.70,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18)),
+                    onPressed: () {},
+                    color: const Color(0xFF16B180),
+                    child: Text(
+                      AppLocalizations.of(context).sendOrder,
+                      style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: themeData.dialogBackgroundColor,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),

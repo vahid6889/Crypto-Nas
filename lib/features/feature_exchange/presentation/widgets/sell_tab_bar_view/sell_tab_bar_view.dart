@@ -122,7 +122,7 @@ class _SellTabBarViewState extends State<SellTabBarView> {
             state: i == currentStep ? StepState.editing : StepState.indexed,
             themeData: themeData,
             dropdownValue: dropdownValue,
-            height: height,
+            height: height * 0.25,
             child: i == 0 ? const OneStepView() : const TwoStepView(),
           ),
         ],
@@ -131,63 +131,58 @@ class _SellTabBarViewState extends State<SellTabBarView> {
           state: currentStep == 2 ? StepState.complete : StepState.indexed,
           themeData: themeData,
           dropdownValue: dropdownValue,
-          height: height,
           width: width,
-          child: Dialog(
-            shape: RoundedRectangleBorder(
+          child: Container(
+            height: height * 0.20,
+            decoration: BoxDecoration(
+              color: themeData.hintColor,
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: Container(
-              decoration: BoxDecoration(
-                color: themeData.cardColor,
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              constraints: const BoxConstraints(maxHeight: 150),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            constraints: const BoxConstraints(maxHeight: 150),
+            child: Padding(
+              padding: const EdgeInsets.only(top: 35, left: 20, right: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Vahid Ghasemi',
+                        style: TextStyle(
+                          color: Colors.white70,
+                        ),
+                      ),
+                      Icon(
+                        Icons.wallet,
+                        color: Colors.white70,
+                      ),
+                    ],
+                  ),
+                  const Text(
+                    'bank id: 113535151321',
+                    style: TextStyle(
+                      color: Colors.white70,
+                    ),
+                  ),
+                  SizedBox(height: height * 0.01),
+                  CustomPaint(
+                    size: const Size(200, 3),
+                    painter: CurvePainter(color: themeData.primaryColorLight),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Vahid Ghasemi',
+                        SizedBox(height: height * 0.01),
+                        const Text(
+                          'sheba: 100020034435456675642',
                           style: TextStyle(
                             color: Colors.white70,
                           ),
                         ),
-                        Icon(
-                          Icons.wallet,
-                          color: Colors.white70,
-                        ),
                       ],
                     ),
-                    const Text(
-                      'bank id: 113535151321',
-                      style: TextStyle(
-                        color: Colors.white70,
-                      ),
-                    ),
-                    SizedBox(height: height * 0.01),
-                    CustomPaint(
-                      size: const Size(200, 3),
-                      painter: CurvePainter(color: themeData.primaryColorLight),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(height: height * 0.01),
-                          const Text(
-                            'sheba: 100020034435456675642',
-                            style: TextStyle(
-                              color: Colors.white70,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -219,6 +214,7 @@ class _SellTabBarViewState extends State<SellTabBarView> {
         maxHeight: 300,
         child: SizedBox(
           width: width ?? 220,
+          height: height,
           child: child,
         ),
       ),
