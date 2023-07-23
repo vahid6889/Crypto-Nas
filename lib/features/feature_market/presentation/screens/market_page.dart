@@ -7,6 +7,7 @@ import 'package:crypto_nas/features/feature_home/presentation/widgets/decimalRou
 import 'package:crypto_nas/features/feature_market/presentation/bloc/market_bloc/all_crypto_status.dart';
 import 'package:crypto_nas/features/feature_market/presentation/bloc/market_bloc/market_bloc.dart';
 import 'package:crypto_nas/features/feature_market/presentation/widgets/shimmer_martket.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,6 +69,11 @@ class _MarketPageState extends State<MarketPage> {
 
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: themeData.primaryColor,
+          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.dark,
+        ),
         automaticallyImplyLeading: false,
         backgroundColor: themeData.primaryColor,
         title: Text(

@@ -5,6 +5,7 @@ import 'package:crypto_nas/features/feature_home/presentation/bloc/home_bloc/hom
 import 'package:crypto_nas/features/feature_home/presentation/widgets/choice_chips/top_market_cap_choice_chip.dart';
 import 'package:crypto_nas/features/feature_home/presentation/widgets/drawer_menu_view.dart';
 import 'package:crypto_nas/features/feature_home/presentation/widgets/slider_page_view.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       drawer: DrawerMenuView(themeData: themeData),
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: themeData.primaryColor,
+          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.dark,
+        ),
+        elevation: 0,
         backgroundColor: themeData.primaryColor,
         actions: const [
           ThemeSwitcher(),

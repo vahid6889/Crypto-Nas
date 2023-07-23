@@ -3,6 +3,7 @@ import 'package:crypto_nas/core/utils/prefs_operator.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/screens/sign_up_screen.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/utils/profile_list_model.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/widgets/profile_list_tile.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:crypto_nas/locator.dart';
 import 'package:flutter/material.dart';
@@ -71,6 +72,11 @@ class ProfilePage extends StatelessWidget {
     var themeData = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: themeData.primaryColor,
+          statusBarBrightness: Brightness.dark,
+          statusBarIconBrightness: Brightness.dark,
+        ),
         elevation: 0,
         toolbarHeight: 0,
       ),

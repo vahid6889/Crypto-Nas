@@ -273,6 +273,7 @@ class LoginMobileView extends StatelessWidget {
                   width: double.infinity,
                   height: 55,
                   child: FloatingActionButton.extended(
+                    elevation: 0,
                     onPressed: () {
                       Navigator.push(
                         context,

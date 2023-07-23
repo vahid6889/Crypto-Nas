@@ -29,10 +29,7 @@ class MainWrapper extends StatelessWidget {
 
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
-        statusBarBrightness: themeData.brightness,
-        statusBarColor: themeData.primaryColor,
         systemNavigationBarColor: themeData.primaryColor,
-        statusBarIconBrightness: Brightness.dark,
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Directionality(
