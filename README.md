@@ -24,6 +24,21 @@ Features of the cryptocurrencies Flutter project:
 - Testable (coming soon)
 - Provided details bloc with Getit
 <hr>
+The packages used in the project:
+- Shared preferences
+- Dio
+- Flutter localization
+- Intl
+- Get-it
+- Smooth page indicator
+- Shimmer effect
+- Cached network image
+- Flutter SVG
+- Email validator
+- Lottie
+- Teb indicator
+- Blobs
+<hr>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
