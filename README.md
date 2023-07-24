@@ -1,7 +1,29 @@
-# crypto_nas
+# crypto_nas <img src="android/app/src/main/res/mipmap-hdpi/ic_launcher.png" align="right"/><br><br>
 
-A new Flutter project.
+In this program, you can check the status of your cryptocurrencies graphically and in percentage form, and find out about their winning and losing conditions.
 
+<hr>
+<p align="center">
+  <img src="assets/Home_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/Drawing_menu_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/All_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/Profile_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/Watch_list_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/Steper_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/Steper2_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/Order_exchange_crypto_nas.jpg" width="200" height="400" />
+  <img src="assets/SignUp_crypto_nas.jpg" width="200" height="400" />
+</p>
+<hr>
+
+Features of the cryptocurrencies Flutter project:
+- Clean Architecture
+- Bloc statement
+- Featured folder structure
+- Responsive view screens
+- Testable (coming soon)
+- Provided details bloc with Getit
+<hr>
 ## Getting Started
 
 This project is a starting point for a Flutter application.
