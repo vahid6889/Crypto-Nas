@@ -24,6 +24,7 @@ Features of the cryptocurrencies Flutter project:
 - Testable (coming soon)
 - Provided details bloc with Getit
 <hr>
+
 The packages used in the project:
 - Shared preferences
 - Dio
