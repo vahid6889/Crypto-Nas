@@ -26,6 +26,8 @@ Features of the cryptocurrencies Flutter project:
 <hr>
 
 The packages used in the project:
+- Flutter bloc
+- Bloc
 - Shared preferences
 - Dio
 - Flutter localization
