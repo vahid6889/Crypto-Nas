@@ -23,6 +23,7 @@ Features of the cryptocurrencies Flutter project:
 - Responsive view screens
 - Testable (coming soon)
 - Provided details bloc with Getit
+- Lint
 <hr>
 
 The packages used in the project:
