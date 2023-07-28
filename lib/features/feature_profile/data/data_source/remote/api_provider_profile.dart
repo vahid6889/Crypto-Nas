@@ -7,15 +7,15 @@ import 'package:dio/dio.dart';
 class ApiProviderProfile {
   final Dio _dio = Dio();
 
-  Future<dynamic> callRegisterApi(RegisterParams registerParams) async {
+  Future<Response> callRegisterApi(RegisterParams registerParams) async {
     try {
-      var fromData = FormData.fromMap({
+      final fromData = FormData.fromMap({
         'user_name': registerParams.userName,
         'email': registerParams.email,
         'password': registerParams.password,
         'password_confirmation': registerParams.password,
       });
-      var response = await _dio.post(
+      final response = await _dio.post(
         '${Constants.userUrl}/register',
         data: fromData,
       );
@@ -26,13 +26,13 @@ class ApiProviderProfile {
     }
   }
 
-  Future<dynamic> callLoginApi(LoginParams loginParams) async {
+  Future<Response> callLoginApi(LoginParams loginParams) async {
     try {
-      var fromData = FormData.fromMap({
+      final fromData = FormData.fromMap({
         'email': loginParams.email,
         'password': loginParams.password,
       });
-      var response = await _dio.post(
+      final response = await _dio.post(
         '${Constants.userUrl}/login',
         data: fromData,
       );

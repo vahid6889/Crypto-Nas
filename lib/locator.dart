@@ -27,7 +27,8 @@ setup() async {
   locator.registerSingleton<ApiProviderMarket>(ApiProviderMarket());
   locator.registerSingleton<ApiProviderProfile>(ApiProviderProfile());
 
-  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  final SharedPreferences sharedPreferences =
+      await SharedPreferences.getInstance();
   locator.registerSingleton<SharedPreferences>(sharedPreferences);
   locator.registerSingleton<PrefsOperator>(PrefsOperator());
 

@@ -14,39 +14,39 @@ class HomeRepositoryImpl extends HomeRepository {
   @override
   Future<DataState<TopMarketCoinEntity>> fetchTopMarketCapData() async {
     try {
-      Response response = await _apiProviderHome.getTopMarketCapData();
+      final Response response = await _apiProviderHome.getTopMarketCapData();
 
-      TopMarketCoinEntity topMarketCapEntity =
+      final TopMarketCoinEntity topMarketCapEntity =
           AllCryptoModel.fromJson(response.data);
       return DataSuccess(topMarketCapEntity);
     } on AppException catch (e) {
-      return await CheckExceptions.getError(e);
+      return CheckExceptions.getErrorMarket(e);
     }
   }
 
   @override
   Future<DataState<TopMarketCoinEntity>> fetchTopGainerData() async {
     try {
-      Response response = await _apiProviderHome.getTopGainerData();
+      final Response response = await _apiProviderHome.getTopGainerData();
 
-      TopMarketCoinEntity topMarketCapEntity =
+      final TopMarketCoinEntity topMarketCapEntity =
           AllCryptoModel.fromJson(response.data);
       return DataSuccess(topMarketCapEntity);
     } on AppException catch (e) {
-      return await CheckExceptions.getError(e);
+      return CheckExceptions.getErrorMarket(e);
     }
   }
 
   @override
   Future<DataState<TopMarketCoinEntity>> fetchTopLoserData() async {
     try {
-      Response response = await _apiProviderHome.getTopLosersData();
+      final Response response = await _apiProviderHome.getTopLosersData();
 
-      TopMarketCoinEntity topMarketCapEntity =
+      final TopMarketCoinEntity topMarketCapEntity =
           AllCryptoModel.fromJson(response.data);
       return DataSuccess(topMarketCapEntity);
     } on AppException catch (e) {
-      return await CheckExceptions.getError(e);
+      return CheckExceptions.getErrorMarket(e);
     }
   }
 }

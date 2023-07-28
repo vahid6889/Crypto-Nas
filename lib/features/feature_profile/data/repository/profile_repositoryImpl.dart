@@ -15,29 +15,31 @@ class ProfileRepositoryImpl extends ProfileRepository {
 
   @override
   Future<DataState<UserEntity>> callRegisterApi(
-      RegisterParams registerParams) async {
+    RegisterParams registerParams,
+  ) async {
     try {
-      Response response =
+      final Response response =
           await _apiProviderProfile.callRegisterApi(registerParams);
 
-      UserEntity profileEntity = UserModel.fromJson(response.data);
+      final UserEntity profileEntity = UserModel.fromJson(response.data);
 
       return DataSuccess(profileEntity);
     } on AppException catch (e) {
-      return await CheckExceptions.getError(e);
+      return CheckExceptions.getErrorProfile(e);
     }
   }
 
   @override
   Future<DataState<UserEntity>> callLoginApi(LoginParams loginParams) async {
     try {
-      Response response = await _apiProviderProfile.callLoginApi(loginParams);
+      final Response response =
+          await _apiProviderProfile.callLoginApi(loginParams);
 
-      UserEntity profileEntity = UserModel.fromJson(response.data);
+      final UserEntity profileEntity = UserModel.fromJson(response.data);
 
       return DataSuccess(profileEntity);
     } on AppException catch (e) {
-      return await CheckExceptions.getError(e);
+      return CheckExceptions.getErrorProfile(e);
     }
   }
 }

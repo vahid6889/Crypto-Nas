@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto_nas/core/utils/constants.dart';
 import 'package:crypto_nas/features/feature_home/data/models/CryptoData.dart';
@@ -7,10 +8,10 @@ import 'package:crypto_nas/features/feature_home/presentation/widgets/decimalRou
 import 'package:crypto_nas/features/feature_market/presentation/bloc/market_bloc/all_crypto_status.dart';
 import 'package:crypto_nas/features/feature_market/presentation/bloc/market_bloc/market_bloc.dart';
 import 'package:crypto_nas/features/feature_market/presentation/widgets/shimmer_martket.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
@@ -64,8 +65,8 @@ class _MarketPageState extends State<MarketPage> {
 
   @override
   Widget build(BuildContext context) {
-    var themeData = Theme.of(context);
-    var height = MediaQuery.of(context).size.height;
+    final themeData = Theme.of(context);
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
       appBar: AppBar(
@@ -82,9 +83,7 @@ class _MarketPageState extends State<MarketPage> {
         centerTitle: true,
         titleTextStyle: themeData.textTheme.displayMedium,
       ),
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
+      body: SizedBox.expand(
         child: Column(
           children: [
             Expanded(
@@ -104,10 +103,10 @@ class _MarketPageState extends State<MarketPage> {
                     final AllCryptoCompleted allCryptoCompleted =
                         state.allCryptoStatus as AllCryptoCompleted;
 
-                    final TopMarketCoinEntity topMarketCoinEntity =
+                    final TopMarketCoinEntity? topMarketCoinEntity =
                         allCryptoCompleted.topMarketCoinEntity;
                     List<CryptoData?>? model =
-                        topMarketCoinEntity.data!.cryptoCurrencyList;
+                        topMarketCoinEntity!.data!.cryptoCurrencyList;
                     allCrypto = model!;
                     if (modelSuggestion != null) {
                       model = modelSuggestion;
@@ -129,7 +128,8 @@ class _MarketPageState extends State<MarketPage> {
                               // hintText: AppLocalizations.of(context)!.search,
                               enabledBorder: OutlineInputBorder(
                                 borderSide: BorderSide(
-                                    color: themeData.secondaryHeaderColor),
+                                  color: themeData.secondaryHeaderColor,
+                                ),
                                 borderRadius:
                                     const BorderRadius.all(Radius.circular(15)),
                               ),
@@ -148,37 +148,35 @@ class _MarketPageState extends State<MarketPage> {
                             },
                             itemCount: model!.length,
                             itemBuilder: (context, index) {
-                              var number = index + 1;
-                              var tokenId = model![index]!.id;
+                              final number = index + 1;
+                              final tokenId = model![index]!.id;
 
                               // get filter color for chart (green or red)
-                              MaterialColor filterColor =
-                                  DecimalRounder.setColorFilter(model[index]!
-                                      .quotes![0]
-                                      .percentChange24h);
+                              final MaterialColor filterColor =
+                                  DecimalRounder.setColorFilter(
+                                model[index]!.quotes![0].percentChange24h,
+                              );
 
                               // get price decimals fix
-                              var finalPrice =
+                              final finalPrice =
                                   DecimalRounder.removePriceDecimals(
-                                      model[index]!.quotes![0].price);
+                                model[index]!.quotes![0].price,
+                              );
 
                               // percent change setup decimals and colors
-                              var percentChange =
+                              final percentChange =
                                   DecimalRounder.removePercentDecimals(
-                                      model[index]!
-                                          .quotes![0]
-                                          .percentChange24h);
+                                model[index]!.quotes![0].percentChange24h,
+                              );
 
-                              Color percentColor =
+                              final Color percentColor =
                                   DecimalRounder.setPercentChangesColor(
-                                      model[index]!
-                                          .quotes![0]
-                                          .percentChange24h);
-                              Icon percentIcon =
+                                model[index]!.quotes![0].percentChange24h,
+                              );
+                              final Icon percentIcon =
                                   DecimalRounder.setPercentChangesIcon(
-                                      model[index]!
-                                          .quotes![0]
-                                          .percentChange24h);
+                                model[index]!.quotes![0].percentChange24h,
+                              );
 
                               // allCrypto = model;
 
@@ -205,10 +203,10 @@ class _MarketPageState extends State<MarketPage> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.only(
-                                              left: 10.0, right: 15),
+                                            left: 10.0,
+                                            right: 15,
+                                          ),
                                           child: CachedNetworkImage(
-                                            fadeInDuration: const Duration(
-                                                milliseconds: 500),
                                             height: 32,
                                             width: 32,
                                             imageUrl:
@@ -224,7 +222,8 @@ class _MarketPageState extends State<MarketPage> {
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
-                                                            20),
+                                                      20,
+                                                    ),
                                                     color: Colors.white,
                                                   ),
                                                 ),
@@ -262,7 +261,9 @@ class _MarketPageState extends State<MarketPage> {
                                           // flex: 2,
                                           child: ColorFiltered(
                                             colorFilter: ColorFilter.mode(
-                                                filterColor, BlendMode.srcATop),
+                                              filterColor,
+                                              BlendMode.srcATop,
+                                            ),
                                             child: SvgPicture.network(
                                               "${Constants.chartSvgUrl}/30d/2781/$tokenId.svg",
                                             ),
@@ -272,7 +273,8 @@ class _MarketPageState extends State<MarketPage> {
                                         Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.only(
-                                                right: 10.0),
+                                              right: 10.0,
+                                            ),
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -292,8 +294,9 @@ class _MarketPageState extends State<MarketPage> {
                                                     Text(
                                                       "$percentChange%",
                                                       style: GoogleFonts.ubuntu(
-                                                          color: percentColor,
-                                                          fontSize: 13),
+                                                        color: percentColor,
+                                                        fontSize: 13,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),

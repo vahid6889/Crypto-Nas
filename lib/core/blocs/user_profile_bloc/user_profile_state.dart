@@ -4,11 +4,11 @@ class UserProfileState extends Equatable {
   final List<String> userProfile;
 
   UserProfileState({
-    userProfile,
+    List<String>? userProfile,
   }) : userProfile = userProfile ?? [];
 
   UserProfileState copyWith({
-    newUserProfile,
+    List<String>? newUserProfile,
   }) {
     return UserProfileState(
       userProfile: newUserProfile ?? userProfile,

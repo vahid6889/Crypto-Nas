@@ -8,11 +8,11 @@ import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bl
 import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bloc/profile_bloc.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/screens/sign_up_screen.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/widgets/login_btn.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:crypto_nas/locator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
@@ -35,9 +35,9 @@ class LoginDesktopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    // var width = MediaQuery.of(context).size.width;
-    var themeData = Theme.of(context);
+    final height = MediaQuery.of(context).size.height;
+    // final width = MediaQuery.of(context).size.width;
+    final themeData = Theme.of(context);
 
     return Row(
       children: [
@@ -182,7 +182,8 @@ class LoginDesktopView extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     BlocProvider.of<FormBloc>(context).add(
-                                        ObscureTextSwitchEvent(!obscureState));
+                                      ObscureTextSwitchEvent(!obscureState),
+                                    );
                                   },
                                 ),
                                 hintText: AppLocalizations.of(context).password,
@@ -210,7 +211,10 @@ class LoginDesktopView extends StatelessWidget {
                         Text(
                           AppLocalizations.of(context).privacyNotice,
                           style: GoogleFonts.ubuntu(
-                              fontSize: 15, color: Colors.grey, height: 1.5),
+                            fontSize: 15,
+                            color: Colors.grey,
+                            height: 1.5,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
@@ -232,11 +236,11 @@ class LoginDesktopView extends StatelessWidget {
                               final LoginCompleted loginCompleted =
                                   state.loginStatus as LoginCompleted;
 
-                              final UserEntity profileEntity =
+                              final UserEntity? profileEntity =
                                   loginCompleted.profileEntity;
 
                               userProfile.addAll([
-                                profileEntity.data!.user!.email!,
+                                profileEntity!.data!.user!.email!,
                                 profileEntity.data!.user!.userName!
                               ]);
                               prefsOperator.saveUserProfile(userProfile);
@@ -304,11 +308,11 @@ class LoginDesktopView extends StatelessWidget {
                   ),
                 ),
                 Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      AppLocalizations.of(context).doYouNeedToRegister,
-                      style: themeData.textTheme.displaySmall,
-                    )),
+                  child: Text(
+                    AppLocalizations.of(context).doYouNeedToRegister,
+                    style: themeData.textTheme.displaySmall,
+                  ),
+                ),
                 const SizedBox(
                   height: 5,
                 ),
@@ -335,10 +339,16 @@ class LoginDesktopView extends StatelessWidget {
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
                                     const SignUpScreen(),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
+                            transitionsBuilder: (
+                              context,
+                              animation,
+                              secondaryAnimation,
+                              child,
+                            ) {
                               animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.linear);
+                                parent: animation,
+                                curve: Curves.linear,
+                              );
                               return SlideTransition(
                                 position: Tween<Offset>(
                                   begin: const Offset(0, 1),

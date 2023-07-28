@@ -16,7 +16,7 @@ class TopMarketCapLoading extends TopMarketCapStatus {
 }
 
 class TopMarketCapCompleted extends TopMarketCapStatus {
-  final TopMarketCoinEntity topMarketCoinEntity;
+  final TopMarketCoinEntity? topMarketCoinEntity;
 
   TopMarketCapCompleted(this.topMarketCoinEntity);
 

@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:crypto_nas/core/resources/data_state.dart';
 import 'package:crypto_nas/core/usecase/use_case.dart';
+import 'package:crypto_nas/features/feature_home/domain/entities/top_market_coin_entity.dart';
 import 'package:crypto_nas/features/feature_market/domain/use_cases/get_all_crypto_usecase.dart';
 import 'package:crypto_nas/features/feature_market/presentation/bloc/market_bloc/all_crypto_status.dart';
 import 'package:equatable/equatable.dart';
@@ -18,16 +19,23 @@ class MarketBloc extends Bloc<MarketEvent, MarketState> {
       (event, emit) async {
         emit(state.copyWith(newAllCryptoStatus: AllCryptoLoading()));
 
-        DataState dataState = await _getAllCryptoUseCase(NoParams());
+        final DataState<TopMarketCoinEntity> dataState =
+            await _getAllCryptoUseCase(NoParams());
 
         if (dataState is DataSuccess) {
-          emit(state.copyWith(
-              newAllCryptoStatus: AllCryptoCompleted(dataState.data)));
+          emit(
+            state.copyWith(
+              newAllCryptoStatus: AllCryptoCompleted(dataState.data),
+            ),
+          );
         }
 
         if (dataState is DataFailed) {
-          emit(state.copyWith(
-              newAllCryptoStatus: AllCryptoError(dataState.error!)));
+          emit(
+            state.copyWith(
+              newAllCryptoStatus: AllCryptoError(dataState.error!),
+            ),
+          );
         }
       },
     );

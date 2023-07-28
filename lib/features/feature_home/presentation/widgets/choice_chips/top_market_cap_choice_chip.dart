@@ -15,8 +15,8 @@ class TopMarketCapChoiceChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var themeData = Theme.of(context);
+    final height = MediaQuery.of(context).size.height;
+    final themeData = Theme.of(context);
 
     Future<void> refreshCurrentWeather() async {
       BlocProvider.of<HomeBloc>(context).add(LoadTopMarketCapEvent());
@@ -156,31 +156,37 @@ class TopMarketCapChoiceChip extends StatelessWidget {
               final TopMarketCapCompleted topMarketCapCompleted =
                   state.topMarketCapStatus as TopMarketCapCompleted;
 
-              final TopMarketCoinEntity topMarketCoinEntity =
+              final TopMarketCoinEntity? topMarketCoinEntity =
                   topMarketCapCompleted.topMarketCoinEntity;
-              var model = topMarketCoinEntity.data!.cryptoCurrencyList;
+              final model = topMarketCoinEntity?.data!.cryptoCurrencyList;
 
               return ListView.separated(
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  print(index);
-                  var number = index + 1;
-                  var tokenId = model![index].id;
+                  final number = index + 1;
+                  final tokenId = model![index].id;
 
-                  MaterialColor filterColor = DecimalRounder.setColorFilter(
-                      model[index].quotes!.first.percentChange24h);
+                  final MaterialColor filterColor =
+                      DecimalRounder.setColorFilter(
+                    model[index].quotes!.first.percentChange24h,
+                  );
 
-                  var finalPrice = DecimalRounder.removePriceDecimals(
-                      model[index].quotes!.first.price);
+                  final finalPrice = DecimalRounder.removePriceDecimals(
+                    model[index].quotes!.first.price,
+                  );
 
                   /// percent change setup decimals and colors
-                  var percentChange = DecimalRounder.removePercentDecimals(
-                      model[index].quotes!.first.percentChange24h);
+                  final percentChange = DecimalRounder.removePercentDecimals(
+                    model[index].quotes!.first.percentChange24h,
+                  );
 
-                  Color percentColor = DecimalRounder.setPercentChangesColor(
-                      model[index].quotes!.first.percentChange24h);
-                  Icon percentIcon = DecimalRounder.setPercentChangesIcon(
-                      model[index].quotes!.first.percentChange24h);
+                  final Color percentColor =
+                      DecimalRounder.setPercentChangesColor(
+                    model[index].quotes!.first.percentChange24h,
+                  );
+                  final Icon percentIcon = DecimalRounder.setPercentChangesIcon(
+                    model[index].quotes!.first.percentChange24h,
+                  );
 
                   return SizedBox(
                     height: height * 0.075,
@@ -231,9 +237,12 @@ class TopMarketCapChoiceChip extends StatelessWidget {
                           fit: FlexFit.tight,
                           child: ColorFiltered(
                             colorFilter: ColorFilter.mode(
-                                filterColor, BlendMode.srcATop),
+                              filterColor,
+                              BlendMode.srcATop,
+                            ),
                             child: SvgPicture.network(
-                                '${Constants.chartSvgUrl}/1d/2781/$tokenId.svg'),
+                              '${Constants.chartSvgUrl}/1d/2781/$tokenId.svg',
+                            ),
                           ),
                         ),
                         Expanded(
@@ -268,9 +277,9 @@ class TopMarketCapChoiceChip extends StatelessWidget {
                     ),
                   );
                 },
-                separatorBuilder: ((context, index) {
+                separatorBuilder: (context, index) {
                   return const Divider();
-                }),
+                },
               );
             }
 

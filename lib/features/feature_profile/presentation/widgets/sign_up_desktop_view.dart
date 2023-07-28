@@ -8,11 +8,11 @@ import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bl
 import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bloc/register_status.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/screens/login_screen.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/widgets/sign_up_btn.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:crypto_nas/locator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
@@ -37,9 +37,9 @@ class SignUpDesktopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
+    final height = MediaQuery.of(context).size.height;
     // var width = MediaQuery.of(context).size.width;
-    var themeData = Theme.of(context);
+    final themeData = Theme.of(context);
 
     return Row(
       children: [
@@ -227,7 +227,8 @@ class SignUpDesktopView extends StatelessWidget {
                                   ),
                                   onPressed: () {
                                     BlocProvider.of<FormBloc>(context).add(
-                                        ObscureTextSwitchEvent(!obscureState));
+                                      ObscureTextSwitchEvent(!obscureState),
+                                    );
                                   },
                                 ),
                                 hintText: AppLocalizations.of(context).password,
@@ -255,7 +256,10 @@ class SignUpDesktopView extends StatelessWidget {
                         Text(
                           AppLocalizations.of(context).privacyNotice,
                           style: GoogleFonts.ubuntu(
-                              fontSize: 15, color: Colors.grey, height: 1.5),
+                            fontSize: 15,
+                            color: Colors.grey,
+                            height: 1.5,
+                          ),
                           textAlign: TextAlign.center,
                         ),
                         SizedBox(
@@ -278,11 +282,11 @@ class SignUpDesktopView extends StatelessWidget {
                               final RegisterCompleted registerCompleted =
                                   state.registerStatus as RegisterCompleted;
 
-                              final UserEntity profileEntity =
+                              final UserEntity? profileEntity =
                                   registerCompleted.profileEntity;
 
                               userProfile.addAll([
-                                profileEntity.data!.user!.email!,
+                                profileEntity!.data!.user!.email!,
                                 profileEntity.data!.user!.userName!
                               ]);
                               prefsOperator.saveUserProfile(userProfile);
@@ -353,11 +357,11 @@ class SignUpDesktopView extends StatelessWidget {
                   ),
                 ),
                 Align(
-                    alignment: Alignment.center,
-                    child: Text(
-                      AppLocalizations.of(context).alreadyHaveAnAccount,
-                      style: themeData.textTheme.displaySmall,
-                    )),
+                  child: Text(
+                    AppLocalizations.of(context).alreadyHaveAnAccount,
+                    style: themeData.textTheme.displaySmall,
+                  ),
+                ),
                 const SizedBox(
                   height: 5,
                 ),
@@ -384,10 +388,16 @@ class SignUpDesktopView extends StatelessWidget {
                             pageBuilder:
                                 (context, animation, secondaryAnimation) =>
                                     const LoginScreen(),
-                            transitionsBuilder: (context, animation,
-                                secondaryAnimation, child) {
+                            transitionsBuilder: (
+                              context,
+                              animation,
+                              secondaryAnimation,
+                              child,
+                            ) {
                               animation = CurvedAnimation(
-                                  parent: animation, curve: Curves.linear);
+                                parent: animation,
+                                curve: Curves.linear,
+                              );
                               return SlideTransition(
                                 position: Tween<Offset>(
                                   begin: const Offset(0, 1),

@@ -1,7 +1,6 @@
+import 'package:crypto_nas/features/feature_home/data/models/CryptoData.dart';
+import 'package:crypto_nas/features/feature_home/data/models/Status.dart';
 import 'package:crypto_nas/features/feature_home/domain/entities/top_market_coin_entity.dart';
-
-import 'CryptoData.dart';
-import 'Status.dart';
 
 /// status : {"timestamp":"2022-03-12T09:24:55.291Z","error_code":"0","error_message":"SUCCESS","elapsed":"31","credit_count":0}
 

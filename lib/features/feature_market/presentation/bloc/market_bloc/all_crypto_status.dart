@@ -16,7 +16,7 @@ class AllCryptoLoading extends AllCryptoStatus {
 }
 
 class AllCryptoCompleted extends AllCryptoStatus {
-  final TopMarketCoinEntity topMarketCoinEntity;
+  final TopMarketCoinEntity? topMarketCoinEntity;
 
   AllCryptoCompleted(this.topMarketCoinEntity);
 

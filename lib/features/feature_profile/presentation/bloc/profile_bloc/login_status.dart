@@ -16,7 +16,7 @@ class LoginLoading extends LoginStatus {
 }
 
 class LoginCompleted extends LoginStatus {
-  final UserEntity profileEntity;
+  final UserEntity? profileEntity;
 
   LoginCompleted(this.profileEntity);
 

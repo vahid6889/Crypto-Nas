@@ -1,4 +1,3 @@
-
 /// id : 1
 /// name : "Bitcoin"
 /// symbol : "BTC"
@@ -39,7 +38,8 @@ class CryptoData {
     String? lastUpdated,
     String? dateAdded,
     List<Quotes>? quotes,
-    bool? isAudited,}){
+    bool? isAudited,
+  }) {
     _id = id;
     _name = name;
     _symbol = symbol;
@@ -70,8 +70,7 @@ class CryptoData {
     _marketPairCount = json['marketPairCount'];
     _circulatingSupply = json['circulatingSupply'].toDouble();
     // _selfReportedCirculatingSupply = json['selfReportedCirculatingSupply'];
-    _totalSupply =  json['totalSupply'];
-
+    _totalSupply = json['totalSupply'];
 
     if (json['maxSupply'] != null) {
       var finalvar;
@@ -81,9 +80,6 @@ class CryptoData {
       }
       _maxSupply = finalvar;
     }
-
-
-
 
     _ath = json['ath'];
     _atl = json['atl'];
@@ -165,7 +161,6 @@ class CryptoData {
     map['isAudited'] = _isAudited;
     return map;
   }
-
 }
 
 /// name : "USD"
@@ -208,7 +203,8 @@ class Quotes {
     double? marketCapByTotalSupply,
     double? dominance,
     double? turnover,
-    double? ytdPriceChangePercentage,}){
+    double? ytdPriceChangePercentage,
+  }) {
     _name = name;
     _price = price;
     _volume24h = volume24h;
@@ -314,5 +310,4 @@ class Quotes {
     map['ytdPriceChangePercentage'] = _ytdPriceChangePercentage;
     return map;
   }
-
 }

@@ -16,7 +16,7 @@ class RegisterLoading extends RegisterStatus {
 }
 
 class RegisterCompleted extends RegisterStatus {
-  final UserEntity profileEntity;
+  final UserEntity? profileEntity;
 
   RegisterCompleted(this.profileEntity);
 

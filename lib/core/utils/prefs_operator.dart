@@ -7,40 +7,40 @@ class PrefsOperator {
     sharedPreferences = locator<SharedPreferences>();
   }
 
-  saveSelectedLanguage(langaugeKey, langaugeCode) async {
+  saveSelectedLanguage(String langaugeKey, String langaugeCode) async {
     sharedPreferences.setString(langaugeKey, langaugeCode);
   }
 
   Future<String> getSelectedLanguage(String langaugeKey) async {
-    var status = sharedPreferences.getString(langaugeKey);
+    final status = sharedPreferences.getString(langaugeKey);
     if (status == null) {
       return '';
     }
     return status;
   }
 
-  saveSelectedTheme(themeKey, themeStatus) async {
+  saveSelectedTheme(String themeKey, bool themeStatus) async {
     sharedPreferences.setBool(themeKey, themeStatus);
   }
 
-  Future<bool> getSelectedTheme(themeKey) async {
-    var status = sharedPreferences.getBool(themeKey);
+  Future<bool> getSelectedTheme(String themeKey) async {
+    final status = sharedPreferences.getBool(themeKey);
     if (status == null) {
       return true;
     }
     return status;
   }
 
-  saveUserToken(tokenKey, tokenValue) async {
+  saveUserToken(String tokenKey, String tokenValue) async {
     sharedPreferences.setString(tokenKey, tokenValue);
   }
 
-  setLoggedIn(loggedKey, loggedStatus) async {
+  setLoggedIn(String loggedKey, bool loggedStatus) async {
     sharedPreferences.setBool(loggedKey, loggedStatus);
   }
 
   Future<bool> getLoggedIn(String loggedKey) async {
-    var status = sharedPreferences.getBool(loggedKey);
+    final status = sharedPreferences.getBool(loggedKey);
     if (status == null) {
       return false;
     }
@@ -52,7 +52,7 @@ class PrefsOperator {
   }
 
   Future<List<String>> getUserProfile() async {
-    var status = sharedPreferences.getStringList('user_profile');
+    final status = sharedPreferences.getStringList('user_profile');
     if (status == null) {
       return [];
     }

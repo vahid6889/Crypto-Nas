@@ -6,11 +6,11 @@ import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bl
 import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bloc/profile_bloc.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/screens/sign_up_screen.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/widgets/login_btn.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:crypto_nas/locator.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
@@ -36,8 +36,8 @@ class LoginMobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var themeData = Theme.of(context);
+    final height = MediaQuery.of(context).size.height;
+    final themeData = Theme.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -180,11 +180,11 @@ class LoginMobileView extends StatelessWidget {
                       final LoginCompleted loginCompleted =
                           state.loginStatus as LoginCompleted;
 
-                      final UserEntity profileEntity =
+                      final UserEntity? profileEntity =
                           loginCompleted.profileEntity;
 
                       userProfile.addAll([
-                        profileEntity.data!.user!.email!,
+                        profileEntity!.data!.user!.email!,
                         profileEntity.data!.user!.userName!
                       ]);
                       prefsOperator.saveUserProfile(userProfile);
@@ -287,7 +287,9 @@ class LoginMobileView extends StatelessWidget {
                           transitionsBuilder:
                               (context, animation, secondaryAnimation, child) {
                             animation = CurvedAnimation(
-                                parent: animation, curve: Curves.linear);
+                              parent: animation,
+                              curve: Curves.linear,
+                            );
                             return SlideTransition(
                               position: Tween<Offset>(
                                 begin: const Offset(0, 1),

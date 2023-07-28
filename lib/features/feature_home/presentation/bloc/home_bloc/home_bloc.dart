@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:crypto_nas/core/resources/data_state.dart';
 import 'package:crypto_nas/core/usecase/use_case.dart';
+import 'package:crypto_nas/features/feature_home/domain/entities/top_market_coin_entity.dart';
 import 'package:crypto_nas/features/feature_home/domain/use_cases/get_top_gainer_usecase.dart';
 import 'package:crypto_nas/features/feature_home/domain/use_cases/get_top_loser_usecase.dart';
 import 'package:crypto_nas/features/feature_home/domain/use_cases/get_top_market_cap_usecase.dart';
@@ -32,16 +33,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       (event, emit) async {
         emit(state.copyWith(newTopMarketCapStatus: TopMarketCapLoading()));
 
-        DataState dataState = await _getTopMarketCapUseCase(NoParams());
+        final DataState<TopMarketCoinEntity> dataState =
+            await _getTopMarketCapUseCase(NoParams());
 
         if (dataState is DataSuccess) {
-          emit(state.copyWith(
-              newTopMarketCapStatus: TopMarketCapCompleted(dataState.data)));
+          emit(
+            state.copyWith(
+              newTopMarketCapStatus: TopMarketCapCompleted(dataState.data),
+            ),
+          );
         }
 
         if (dataState is DataFailed) {
-          emit(state.copyWith(
-              newTopMarketCapStatus: TopMarketCapError(dataState.error!)));
+          emit(
+            state.copyWith(
+              newTopMarketCapStatus: TopMarketCapError(dataState.error!),
+            ),
+          );
         }
       },
     );
@@ -49,16 +57,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       (event, emit) async {
         emit(state.copyWith(newTopMarketCapStatus: TopMarketCapLoading()));
 
-        DataState dataState = await _getTopGainerUseCase(NoParams());
+        final DataState<TopMarketCoinEntity> dataState =
+            await _getTopGainerUseCase(NoParams());
 
         if (dataState is DataSuccess) {
-          emit(state.copyWith(
-              newTopMarketCapStatus: TopMarketCapCompleted(dataState.data)));
+          emit(
+            state.copyWith(
+              newTopMarketCapStatus: TopMarketCapCompleted(dataState.data),
+            ),
+          );
         }
 
         if (dataState is DataFailed) {
-          emit(state.copyWith(
-              newTopMarketCapStatus: TopMarketCapError(dataState.error!)));
+          emit(
+            state.copyWith(
+              newTopMarketCapStatus: TopMarketCapError(dataState.error!),
+            ),
+          );
         }
       },
     );
@@ -66,16 +81,23 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       (event, emit) async {
         emit(state.copyWith(newTopMarketCapStatus: TopMarketCapLoading()));
 
-        DataState dataState = await _getTopLoserUseCase(NoParams());
+        final DataState<TopMarketCoinEntity> dataState =
+            await _getTopLoserUseCase(NoParams());
 
         if (dataState is DataSuccess) {
-          emit(state.copyWith(
-              newTopMarketCapStatus: TopMarketCapCompleted(dataState.data)));
+          emit(
+            state.copyWith(
+              newTopMarketCapStatus: TopMarketCapCompleted(dataState.data),
+            ),
+          );
         }
 
         if (dataState is DataFailed) {
-          emit(state.copyWith(
-              newTopMarketCapStatus: TopMarketCapError(dataState.error!)));
+          emit(
+            state.copyWith(
+              newTopMarketCapStatus: TopMarketCapError(dataState.error!),
+            ),
+          );
         }
       },
     );

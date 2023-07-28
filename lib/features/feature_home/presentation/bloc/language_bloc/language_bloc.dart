@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:crypto_nas/core/utils/prefs_operator.dart';
+import 'package:crypto_nas/features/feature_home/presentation/models/language.dart';
 import 'package:crypto_nas/locator.dart';
 import 'package:equatable/equatable.dart';
-import 'package:crypto_nas/features/feature_home/presentation/models/language.dart';
 import 'package:meta/meta.dart';
 
 part 'language_event.dart';
@@ -19,7 +19,9 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
 
   onChangeLanguage(ChangeLanguage event, Emitter<LanguageState> emit) async {
     prefsOperator.saveSelectedLanguage(
-        languagePrefsKey, event.selectedLanguage.value.languageCode);
+      languagePrefsKey,
+      event.selectedLanguage.value.languageCode,
+    );
     emit(state.copyWith(newSelectedLanguage: event.selectedLanguage));
   }
 

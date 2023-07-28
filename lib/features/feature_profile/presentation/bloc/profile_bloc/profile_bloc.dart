@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:crypto_nas/core/params/login_params.dart';
 import 'package:crypto_nas/core/params/register_params.dart';
 import 'package:crypto_nas/core/resources/data_state.dart';
+import 'package:crypto_nas/features/feature_profile/domain/entities/user_entity.dart';
 import 'package:crypto_nas/features/feature_profile/domain/use_cases/call_login_usecase.dart';
 import 'package:crypto_nas/features/feature_profile/domain/use_cases/call_register_usecase.dart';
 import 'package:crypto_nas/features/feature_profile/presentation/bloc/profile_bloc/login_status.dart';
@@ -28,16 +29,23 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       (event, emit) async {
         emit(state.copyWith(newRegisterStatus: RegisterLoading()));
 
-        DataState dataState = await _callRegisterUseCase(event.registerParams);
+        final DataState<UserEntity> dataState =
+            await _callRegisterUseCase(event.registerParams);
 
         if (dataState is DataSuccess) {
-          emit(state.copyWith(
-              newRegisterStatus: RegisterCompleted(dataState.data)));
+          emit(
+            state.copyWith(
+              newRegisterStatus: RegisterCompleted(dataState.data),
+            ),
+          );
         }
 
         if (dataState is DataFailed) {
-          emit(state.copyWith(
-              newRegisterStatus: RegisterError(dataState.error!)));
+          emit(
+            state.copyWith(
+              newRegisterStatus: RegisterError(dataState.error!),
+            ),
+          );
         }
       },
     );
@@ -46,10 +54,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       (event, emit) async {
         emit(state.copyWith(newLoginStatus: LoginLoading()));
 
-        DataState dataState = await _callLoginUseCase(event.loginParams);
+        final DataState<UserEntity> dataState =
+            await _callLoginUseCase(event.loginParams);
 
         if (dataState is DataSuccess) {
-          emit(state.copyWith(newLoginStatus: LoginCompleted(dataState.data)));
+          emit(
+            state.copyWith(
+              newLoginStatus: LoginCompleted(dataState.data),
+            ),
+          );
         }
 
         if (dataState is DataFailed) {

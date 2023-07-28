@@ -6,9 +6,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 Dialog resultOrderDialogSell(BuildContext context) {
-  var height = MediaQuery.of(context).size.height;
-  var width = MediaQuery.of(context).size.width;
-  var themeData = Theme.of(context);
+  final height = MediaQuery.of(context).size.height;
+  final width = MediaQuery.of(context).size.width;
+  final themeData = Theme.of(context);
   final List<ExchangeOrderModel> orderTile = [
     ExchangeOrderModel(
       textTitle: Text(
