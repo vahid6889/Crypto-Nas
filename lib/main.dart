@@ -49,6 +49,8 @@ void main() async {
   );
 }
 
+final mainScaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -56,52 +58,90 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+
+    if (state == AppLifecycleState.resumed) {
+      final userProfile = prefsOperator.getUserProfile();
+      final themeData = Theme.of(context);
+      userProfile.then(
+        (value) {
+          mainScaffoldMessengerKey.currentState!.showSnackBar(
+            SnackBar(
+              elevation: 0,
+              backgroundColor: themeData.primaryColor,
+              behavior: SnackBarBehavior.floating,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+              dismissDirection: DismissDirection.none,
+              content: Text("Welcome again ${value.last} 🙂"),
+            ),
+          );
+        },
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ThemeBloc, ThemeData>(
       builder: (context, themeData) {
         return BlocBuilder<LanguageBloc, LanguageState>(
-            builder: (context, languageData) {
-          return MaterialApp(
-            theme: themeData,
-            debugShowCheckedModeBanner: false,
-            title: "Exchange CN",
-            home: FutureBuilder<bool>(
-              future: prefsOperator.getLoggedIn("LoggedIn"),
-              builder: (context, AsyncSnapshot<bool> snapshot) {
-                if (snapshot.hasData) {
-                  return Directionality(
-                    textDirection: TextDirection.ltr,
-                    child: snapshot.data == true
-                        ? MainWrapper()
-                        : const SignUpScreen(),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+          builder: (context, languageData) {
+            return MaterialApp(
+              theme: themeData,
+              debugShowCheckedModeBanner: false,
+              scaffoldMessengerKey: mainScaffoldMessengerKey,
+              title: "Exchange CN",
+              home: FutureBuilder<bool>(
+                future: prefsOperator.getLoggedIn("LoggedIn"),
+                builder: (context, AsyncSnapshot<bool> snapshot) {
+                  if (snapshot.hasData) {
+                    return Directionality(
+                      textDirection: TextDirection.ltr,
+                      child: snapshot.data == true
+                          ? MainWrapper()
+                          : const SignUpScreen(),
+                    );
+                  } else {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                },
+              ),
+              // initialRoute: "/",
+              locale: languageData.selectedLanguage.value,
+              localizationsDelegates: const [
+                AppLocalizations.delegate,
+                GlobalMaterialLocalizations.delegate,
+                GlobalWidgetsLocalizations.delegate,
+                GlobalCupertinoLocalizations.delegate,
+              ],
+              supportedLocales: const [
+                Locale("en", ""),
+                Locale("fa", ""),
+              ],
+              routes: {
+                SignUpScreen.routeName: (context) => const SignUpScreen(),
+                LoginScreen.routeName: (context) => const LoginScreen(),
               },
-            ),
-            // initialRoute: "/",
-            locale: languageData.selectedLanguage.value,
-            localizationsDelegates: const [
-              AppLocalizations.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
-            supportedLocales: const [
-              Locale("en", ""),
-              Locale("fa", ""),
-            ],
-            routes: {
-              SignUpScreen.routeName: (context) => const SignUpScreen(),
-              LoginScreen.routeName: (context) => const LoginScreen(),
-            },
-          );
-        });
+            );
+          },
+        );
       },
     );
   }
