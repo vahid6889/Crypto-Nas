@@ -1,9 +1,9 @@
 # crypto_nas <img src="android/app/src/main/res/mipmap-hdpi/ic_launcher.png" align="right"/><br><br>
 
-<h2>Download APKs Hiit</h2>
-<a href="https://github.com/vahid6889/HIIT/blob/master/assets/hiit-armeabi-v7a.apk">hiit-armeabi-v7a.apk</a><br />
-<a href="https://github.com/vahid6889/HIIT/blob/master/assets/hiit-arm64-v8a.apk">hiit-arm64-v8a.apk</a><br />
-<a href="https://github.com/vahid6889/HIIT/blob/master/assets/hiit-x86_64.apk">hiit-x86_64.apk</a><br /><br />
+<h2>Download APKs Crypto-Nas</h2>
+<a href="https://github.com/vahid6889/Crypto-Nas/blob/master/assets/crypto_nas-armeabi-v7a.apk">crypto_nas-armeabi-v7a.apk</a><br />
+<a href="https://github.com/vahid6889/Crypto-Nas/blob/master/assets/crypto_nas-arm64-v8a.apk">crypto_nas-arm64-v8a.apk</a><br />
+<a href="https://github.com/vahid6889/Crypto-Nas/blob/master/assets/crypto_nas-x86_64.apk">crypto_nas-x86_64.apk</a><br /><br />
 <hr><br />
 How is it weather ?
 <hr>
